@@ -1,0 +1,11 @@
+
+numpy==1.24
+
+# Use the PyTorch CPU-specific index for PyTorch-related packages
+--index-url https://download.pytorch.org/whl/cpu
+torch==2.0.1
+
+# Reset to the default PyPI index for other packages
+--extra-index-url https://pypi.org/simple
+transformers
+
