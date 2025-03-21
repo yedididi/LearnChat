@@ -8,7 +8,7 @@ RAG 기반 챗봇을 기반으로 LLM 프로젝트 구조 설계를 진행해보
 먼저 다음 명령어로 가상환경을 만들고 활성화 시켜주자.
 ```sh
 python3 -m venv venv
-source venvbin/activate
+source venv/bin/activate
 ```
 
 이후 필요한 패키지들을 설치해준다.
