@@ -1,4 +1,3 @@
-from llama_cpp import Llama
 from typing import Iterator
 
 class Generator:
@@ -6,11 +5,7 @@ class Generator:
         # ###
         # 주석을 지우고 __init__ 을 자유롭게 활용하자.
         # ###
-        self.llm = Llama.from_pretrained(
-            repo_id="bartowski/DeepSeek-R1-Distill-Qwen-1.5B-GGUF",
-            filename="DeepSeek-R1-Distill-Qwen-1.5B-IQ2_M.gguf",
-        )
-        print(self.llm.chat_format)
+        pass
 
 
     def generate(self, prompt: str) -> Iterator[str]:
@@ -28,8 +23,11 @@ class Generator:
         # prompt: Pizza is 
         # @return: " so delicious"
         # ###
-        stream = self.llm(prompt, max_tokens=None, stream=True)
 
-        for chunk in stream:
-            yield chunk['choices'][0]['text']
+        text = "This is a sample answer. Replace this with your answer"
+        from time import sleep
+        for chunk in text.split():
+            sleep(0.1)
+            yield chunk
+            yield ' '
 
