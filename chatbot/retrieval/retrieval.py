@@ -23,7 +23,11 @@ class Retrieval:
         # query: this is an empty query (None of the json key matches)
         # @ return None
         # ###
-        pass
+
+        for key, val in self.data.items():
+            if key.lower() in query.lower():
+                return f"{key}: {val}"
+        return None
 
     def print_data(self) -> None:
         print(self.data)

@@ -12,7 +12,7 @@ class ChatBot:
         retrieved = self.retrieval.retrieve(query)
 
         prompt: str = (
-            f"<user>: {query}\n\n<assistant>: "
+            f"You are a helpful assistant.<｜User｜>{query}<｜Assistant｜>"
         )
 
         if retrieved:
@@ -23,9 +23,16 @@ class ChatBot:
             print(prompt)
             print("============")
 
-        answer = self.generator.generate(prompt)
+        chunk_list: list[str] = []
+        stream = self.generator.generate(prompt)
 
-        return answer
+        print('------thinking--------\n', flush=True, end="")
+        for chunk in stream:
+            print(chunk, flush=True, end="")
+            chunk_list.append(chunk)
+        print("\r" + " " * 20 + "\r", end="", flush=True)
+
+        return ''.join(chunk_list)
 
     def converse(self) -> None:
         while True:
