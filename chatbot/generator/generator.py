@@ -16,7 +16,7 @@ class Generator:
 
 
     def generate(self, prompt: str) -> Iterator[str]:
-        # ###
+        # ##
         # 주석을 지우고 다음 기능을 완성하자.
         # generate 는 단순 prompt 뒤에 이어질 "자연스러운" 말을 리턴하면 된다.
         # 단, 토큰을 하나하나 출력하기 위해서는 Iterator 로 리턴해야한다. 
@@ -31,7 +31,7 @@ class Generator:
         # @return: " so delicious"
         # ###
         input_ids = self.tokenizer.encode(prompt, return_tensors="pt").to(self.device)
-        
+
         output = self.model.generate(
             input_ids,
             max_new_tokens=50,
