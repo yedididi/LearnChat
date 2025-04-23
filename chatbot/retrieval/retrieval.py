@@ -2,7 +2,7 @@ import json
 
 
 class Retrieval:
-    def __init__(self, data_path: str = "./data/newjeans.json"):
+    def __init__(self, data_path: str = "./data/members.json"):
         with open(data_path, "r") as file:
             data: dict[str, str] = json.load(file)
             self.data = data
@@ -23,6 +23,14 @@ class Retrieval:
         # query: this is an empty query (None of the json key matches)
         # @ return None
         # ###
+
+        words = query.split(" ")
+
+        for word in words:
+            for key in self.data.keys():
+                if word == key:
+                    return f"{key}: {self.data[key]}"
+
         return None
 
 
