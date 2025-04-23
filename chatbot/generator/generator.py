@@ -29,7 +29,7 @@ class Generator:
         # 예시 2:
         # prompt: Pizza is 
         # @return: " so delicious"
-        # ###
+        # ##
         input_ids = self.tokenizer.encode(prompt, return_tensors="pt").to(self.device)
 
         output = self.model.generate(
