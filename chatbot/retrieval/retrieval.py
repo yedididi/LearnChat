@@ -2,7 +2,7 @@ import json
 
 
 class Retrieval:
-    def __init__(self, data_path: str = "./data/newjeans.json"):
+    def __init__(self, data_path: str = "./data/members.json"):
         with open(data_path, "r") as file:
             data: dict[str, str] = json.load(file)
             self.data = data
