@@ -6,9 +6,9 @@ retrieval = Retrieval()
 
 
 # Test 1
-retrieved = retrieval.retrieve("minji")
+retrieved = retrieval.retrieve("yeji")
 
-print("Test 1: below should retrieve sentence about minji")
+print("Test 1: below should retrieve sentence about yeji")
 print(retrieved)
 
 
