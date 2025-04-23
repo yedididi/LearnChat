@@ -23,6 +23,14 @@ class Retrieval:
         # query: this is an empty query (None of the json key matches)
         # @ return None
         # ###
+
+        words = query.split(" ")
+
+        for word in words:
+            for key in self.data.keys():
+                if word == key:
+                    return f"{key}: {self.data[key]}"
+
         return None
 
 
