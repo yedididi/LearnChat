@@ -1,11 +1,18 @@
 from typing import Iterator
+from transformers import pipeline
+from transformers import AutoTokenizer, AutoModelForCausalLM
+import torch
 
 class Generator:
     def __init__(self) -> None:
         # ###
-        # 주석을 지우고 __init__ 을 자유롭게 활용하자.
+        self.tokenizer = AutoTokenizer.from_pretrained("skt/kogpt2-base-v2")
+        self.model = AutoModelForCausalLM.from_pretrained("skt/kogpt2-base-v2")
+        self.model.eval()  # 추론 모드
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.model.to(self.device)
         # ###
-        pass
+        
 
 
     def generate(self, prompt: str) -> Iterator[str]:
@@ -23,11 +30,25 @@ class Generator:
         # prompt: Pizza is 
         # @return: " so delicious"
         # ###
+        input_ids = self.tokenizer.encode(prompt, return_tensors="pt").to(self.device)
+        
+        output = self.model.generate(
+            input_ids,
+            max_new_tokens=50,
+            do_sample=True,
+            top_k=50,
+            top_p=0.95,
+            temperature=0.8,
+            pad_token_id=self.tokenizer.eos_token_id
+        )
 
-        text = "This is a sample answer. Replace this with your answer"
+        # 새로 생성된 부분만 추출
+        generated_ids = output[0][input_ids.size(1):]
+        generated_text = self.tokenizer.decode(generated_ids, skip_special_tokens=True)
+
+        # 한 단어씩 stream 출력
         from time import sleep
-        for chunk in text.split():
-            sleep(0.1)
-            yield chunk
-            yield ' '
-
+        for word in generated_text.split():
+            sleep(0.1)  # 애니메이션처럼 출력
+            yield word
+            yield " "
