@@ -5,7 +5,7 @@ import torch
 
 class Generator:
     def __init__(self) -> None:
-        # 모델 및 토크나이저 로딩 (GPT2)
+        # 모델 및 토크나이저 로딩 (GPT2)#
         self.tokenizer = AutoTokenizer.from_pretrained("gpt2")
         self.model = AutoModelForCausalLM.from_pretrained("gpt2")
         self.model.eval()  # 추론 모드
